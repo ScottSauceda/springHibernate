@@ -39,4 +39,9 @@ public class UserServiceImpl implements UserService {
 		return userDao.deleteUser(userId);
 	}
 	
+	 @Override
+	    public User addCourse(String username, int courseId) {
+	        return userDao.addCourse(username, courseId);
+	    }
+	
 }

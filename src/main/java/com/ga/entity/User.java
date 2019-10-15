@@ -1,5 +1,8 @@
 package com.ga.entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.*;
 
 @Entity
@@ -54,5 +57,35 @@ public User() {}
 	public void setUserProfile(UserProfile userProfile) {
 		this.userProfile = userProfile;
 	}
+	
+	@ManyToOne(cascade = {CascadeType.DETACH,
+            CascadeType.MERGE, CascadeType.REFRESH})
+	@JoinColumn(name = "user_role_id", nullable = false)
+	private UserRole userRole;
+	    
+	public UserRole getUserRole() { return userRole; }
+	
+	public void setUserRole(UserRole userRole) { this.userRole = userRole; }
+	
+	 @ManyToMany(fetch = FetchType.LAZY,
+             cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH})
+ @JoinTable(name = "user_course",
+         joinColumns = {@JoinColumn(name = "user_id")},
+         inverseJoinColumns = @JoinColumn(name = "course_id"))
+ private List<Course> courses;
+ 
+ public List<Course> getCourses() { return courses; }
+
+ public void setCourses(List<Course> courses) { this.courses = courses; }
+ 
+ 
+ public List<Course> addCourse(Course course) {
+     if(courses == null)
+         courses = new ArrayList<>();
+     
+	courses.add(course);
+
+     return courses;
+ }
 
 }

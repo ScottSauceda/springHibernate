@@ -17,5 +17,7 @@ public interface UserDao {
 	public Long deleteUser(Long userId);
 	
 	public User getUserByUsername(String username);
+	
+	public User addCourse(String username, int courseId);
 
 }

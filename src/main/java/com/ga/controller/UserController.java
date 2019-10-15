@@ -50,4 +50,9 @@ public class UserController {
 		return userService.deleteUser(userId);
 	}
 	
+	@PutMapping("/{username}/course/{courseId}")
+    public User addCourse(@PathVariable String username, @PathVariable int courseId) {
+        return userService.addCourse(username, courseId);
+    }
+	
 }

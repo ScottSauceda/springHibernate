@@ -15,5 +15,7 @@ public interface UserService {
 	public User updateUser(User user, Long userId);
 	
 	public Long deleteUser(Long userId);
+	
+	public User addCourse(String username, int courseId);
 		
 }
